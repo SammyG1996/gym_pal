@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { createContext } from 'react';
 import './App.css';
+import Nav from './components/Nav';
+
+type Context = {
+  isLoggedIn : boolean; 
+  username: string;
+};
+
+export const IsLoggedInContext = createContext<Context |null>(null)
+
 
 function App() {
+
+  const isLoggedIn = true;
+  const username = 'sam96'
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <IsLoggedInContext.Provider
+          value={{
+            isLoggedIn,
+            username
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          <Nav />
+        </IsLoggedInContext.Provider>
+
     </div>
   );
 }

@@ -1,6 +1,9 @@
 import React, { createContext } from 'react';
 import './App.css';
 import Nav from './components/Nav';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import Home from './components/Home';
+
 
 type Context = {
   isLoggedIn : boolean; 
@@ -23,6 +26,12 @@ function App() {
           }}
         >
           <Nav />
+
+          <Routes>
+            <Route path={'/'} element={<Home />} />
+            <Route path='*' element={<Navigate replace to='/' />} />
+          </Routes>
+
         </IsLoggedInContext.Provider>
 
     </div>

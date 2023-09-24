@@ -37,7 +37,7 @@ const Nav = () => {
 
     return (
         // Icon light color hex 31C48D
-        <div className='fixed top-0 w-full h-[70px] flex justify-between px-4 items-center bg-[#293241] text-white shadow-md z-50'>
+        <div className='sticky top-0 w-full h-[70px] flex justify-between px-4 items-center bg-[#293241] text-white shadow-md z-50'>
             <div>
                 <Link to={'/'}><img src={Logo} alt="image logo" style={{height: "30px"}}/></Link>      
             </div>
@@ -109,7 +109,7 @@ const Nav = () => {
             </div>
 
             {/* Mobile Menu */}
-            <ul className={menuClicked ? 'absolute top-0 left-0 w-full h-screen bg-[#102E4A] text-white flex flex-col justify-center items-center' : 'hidden'}>
+            <ul className={menuClicked ? 'absolute top-0 left-0 w-full h-screen bg-[#293241] text-white flex flex-col justify-center items-center' : 'hidden'}>
             <li className='flex justify-center w-[100%] h-[70px] px-2 hover:bg-[#98C1D9]'>
                     <button className='flex items-center' onClick={handleHamburgerClick}>
                         <div className='flex items-center justify-between'>

@@ -80,7 +80,7 @@ const SignInForm = () => {
 
             {!loading && <form  onSubmit={handleSubmit}>
                 <div className={`bg-[${Colors.dark}] bg-opacity-50 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-10 mt-10 w-[80vw] md:w-[60vw] lg:w-[30vw] shadow-lg flex flex-col items-center`}>
-                    <h1 className='text-2xl text-center my-5 text-white font-black'>Login</h1>
+                    <h1 className='text-2xl text-center my-5 text-white font-black'>Sign In</h1>
                     <div className='mb-2'>
                         <input value={inputData.username} onChange={handleUpdate} className='w-[250px] py-2 px-2' type='text' name='username' id='username' placeholder='Username' />
                     </div>

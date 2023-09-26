@@ -3,7 +3,7 @@ import './App.css';
 import Nav from './components/Nav';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
-import SignIn from './components/SignIn';
+import Form from './components/Form';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { ContextType } from './config/ContextType';
 import Alert from './components/helper_components/Alerts/Alert';
@@ -51,7 +51,8 @@ function App() {
           <Alert />
           <Routes>
             <Route path={'/'} element={<Home />} />
-            <Route path={'/signin'} element={<SignIn />} />
+            <Route path={'/signin'} element={<Form />} />
+            <Route path={'/signup'} element={<Form />} />
             <Route path='*' element={<Navigate replace to='/' />} />
           </Routes>
 

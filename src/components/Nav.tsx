@@ -89,7 +89,7 @@ const Nav = () => {
                 {!isLoggedIn && <li className='flex h-[70px] px-2 hover:bg-[#EE6C4D]'>
                     <button className='flex items-center' >
                         <div className='flex items-center justify-between'>
-                            <MdLogin /><span className='pl-2'><Link to={'/login'}>Login</Link></span>
+                            <MdLogin /><span className='pl-2'><Link to={'/signin'}>Sign In</Link></span>
                         </div>
                     </button>
                 </li>}
@@ -146,7 +146,7 @@ const Nav = () => {
                 {!isLoggedIn && <li className='flex justify-center w-[100%] h-[70px] px-2 hover:bg-[#EE6C4D]'>
                     <button className='flex items-center' onClick={handleHamburgerClick}>
                         <div className='flex items-center justify-between'>
-                            <MdLogin /><span className='pl-2'><Link to={'/login'}>Login</Link></span>
+                            <MdLogin /><span className='pl-2'><Link to={'/signin'}>Sign In</Link></span>
                         </div>
                     </button>
                 </li>}

@@ -10,6 +10,7 @@ import { ContextType } from '../../../config/ContextType';
 import PrimaryButton from '../buttons/PrimaryButton';
 import { CredentialResponse } from '@react-oauth/google';
 import { Colors } from '../../../assets/colors';
+import Spinner from '../Alerts/Spinner';
 
 
 /**This form handles the creation of a new user */
@@ -88,14 +89,7 @@ const SignUpForm = () => {
 
     return (
         <div>
-            {loading && 
-            <div className='h-screen w-full flex justify-center'>
-                    <div className='justify-center items-center'>
-                        <IconContext.Provider value={{ size: '2.5rem' }}>
-                            <BiLoader className='animate-spin animate-infinite animate-duration-[1500ms] animate-ease-linear animate-normal animate-fill-forwards'/>
-                        </IconContext.Provider>
-                    </div>
-            </div>}
+            {loading && <Spinner />}
 
             {!loading && <form  onSubmit={handleSubmit}>
                 <div className={`bg-[${Colors.dark}] bg-opacity-50 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-10 mt-10 w-[80vw] md:w-[60vw] lg:w-[30vw] shadow-md flex flex-col items-center`}>

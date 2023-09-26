@@ -32,6 +32,7 @@ const SignUpForm = () => {
         setLoading(true)
         const {username, firstName, lastName, email, password, confirmpassword} = inputData;
         const createUser = async () => {
+            console.log(username, firstName, lastName, email, password, confirmpassword)
             // Makes sure that no fields are blank
             // if(password !== '' && confirmpassword !== '' && username !== '' && firstName !== '' && lastName !== '' && email !== ''){
             //     if(password === confirmpassword){ /**confirms the user entered the correct pw */

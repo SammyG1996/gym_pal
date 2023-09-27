@@ -34,11 +34,11 @@ const SignInForm = () => {
                 console.log(user);
                 updateToken(token);
                 updatedIsLoggedIn();
-                updateUsername(inputData.username);
+                updateUsername(user.username);
                 updateUser(user);
-                sessionStorage.setItem("token", `${token}`)
-                sessionStorage.setItem("username", `${inputData.username}`)
-                sessionStorage.setItem("user", user)
+                const localStorageObject = JSON.stringify({token: token, username: user.username, user: user})
+                localStorage.setItem("gym_pal", localStorageObject)
+
                 setLoading(false)
                 navigate('/')
             }
@@ -57,7 +57,7 @@ const SignInForm = () => {
     const handleOAuthSubmit = async (credentialResponse:CredentialResponse) => {
         try {
             setLoading(true);
-            const {token, user} = await GymPalAPI.loginOAuth(credentialResponse);
+            const {token, user}:{token:string, user:{username: string}} = await GymPalAPI.loginOAuth(credentialResponse);
             if(token){
                 console.log(token);
                 console.log(user);
@@ -65,9 +65,8 @@ const SignInForm = () => {
                 updatedIsLoggedIn();
                 updateUsername(user.username)
                 updateUser(user);
-                sessionStorage.setItem("token", `${token}`)
-                sessionStorage.setItem("username", `${user.username}`)
-                sessionStorage.setItem("user", user)
+                const localStorageObject = JSON.stringify({token: token, username: user.username, user: user})
+                localStorage.setItem("gym_pal", localStorageObject)
                 setLoading(false)
                 navigate('/')
             }

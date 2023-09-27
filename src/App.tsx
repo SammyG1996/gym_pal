@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import './App.css';
 import Nav from './components/Nav';
 import { Navigate, Route, Routes } from 'react-router-dom';
@@ -7,6 +7,8 @@ import Form from './components/Form';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { ContextType } from './config/ContextType';
 import Alert from './components/helper_components/Alerts/Alert';
+import { GymPalAPI } from './helpers/GymPalAPI';
+
 
 
 export const IsLoggedInContext = createContext<ContextType |null>(null)
@@ -19,12 +21,29 @@ function App() {
   const [username, setUsername] = useState<null | string>(null);
   const [alert, setAlert] = useState<null | string>(null);
   const [user, setUser] = useState<null | object>(null);
-  
   const currentDate = new Date();
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth() + 1; // Months are zero-based, so add 1
   const day = currentDate.getDate();
   const formattedDate = `${year}-${month}-${day}`;
+
+  useEffect(()=>{
+    const localInfo = localStorage.getItem('gym_pal');
+    if(localInfo){
+      const {token, username, user} = JSON.parse(localInfo)
+      updateToken(token);
+      updatedIsLoggedIn();
+      updateUsername(username);
+      GymPalAPI.token = token;
+      GymPalAPI.bearer_token_req = {
+        headers: { 
+            Authorization: `Bearer ${token}`
+        }
+      }
+      GymPalAPI.user = user;
+
+    }
+  }, [])
 
   const updatedIsLoggedIn = () => {
     setIsLoggedIn(bool => !bool);

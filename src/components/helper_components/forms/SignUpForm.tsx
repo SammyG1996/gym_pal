@@ -1,9 +1,6 @@
 import React, {useState, useContext} from 'react';
 import { IsLoggedInContext } from '../../../App';
-// import NutritionApi from '../helpers/NutritionApi';
 import { useNavigate } from 'react-router';
-import {BiLoader} from 'react-icons/bi'
-import { IconContext } from 'react-icons';
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
 import { ContextType } from '../../../config/ContextType';
@@ -11,6 +8,8 @@ import PrimaryButton from '../buttons/PrimaryButton';
 import { CredentialResponse } from '@react-oauth/google';
 import { Colors } from '../../../assets/colors';
 import Spinner from '../Alerts/Spinner';
+import { GymPalAPI } from '../../../helpers/GymPalAPI';
+import { error } from 'console';
 
 
 /**This form handles the creation of a new user */
@@ -33,36 +32,36 @@ const SignUpForm = () => {
         setLoading(true)
         const {username, firstName, lastName, email, password, confirmpassword} = inputData;
         const createUser = async () => {
-            console.log(username, firstName, lastName, email, password, confirmpassword)
             // Makes sure that no fields are blank
-            // if(password !== '' && confirmpassword !== '' && username !== '' && firstName !== '' && lastName !== '' && email !== ''){
-            //     if(password === confirmpassword){ /**confirms the user entered the correct pw */
-            //         const res = await NutritionApi.createUser(username, firstName, lastName, email, password);
-            //         if(res.name && res.name === 'AxiosError'){
-            //             // Checks to see if error meassage is in an array
-            //             setLoading(false)
-            //             let alert;
-            //             Array.isArray(res.response.data.error.message) ? alert = res.response.data.error.message[0] : alert = res.response.data.error.message;
-            //             updateAlert(alert)
-            //             if(alert.includes('already has an account, please sign in')){
-            //                 navigate('/login')
-            //             }
+            if(password !== '' && confirmpassword !== '' && username !== '' && firstName !== '' && lastName !== '' && email !== ''){
+                if(password === confirmpassword){ /**confirms the user entered the correct pw */
+                    const res = await GymPalAPI.createUser(username, firstName, lastName, email, password);
+                    if(!res) return console.log("ERROR")
+                    if(res.name && res.name === 'AxiosError'){
+                        // Checks to see if error meassage is in an array
+                        setLoading(false)
+                        let alert;
+                        Array.isArray(res.response.data.error.message) ? alert = res.response.data.error.message[0] : alert = res.response.data.error.message;
+                        updateAlert(alert)
+                        if(alert.includes('already has an account, please sign in')){
+                            navigate('/signin')
+                        }
 
-            //         } else if(res.status === 201){ /**if there is no error this will run */
-            //             setLoading(false)
-            //             updateAlert('User created')
-            //             navigate('/login')
+                    } else if(res.status === 201){ /**if there is no error this will run */
+                        setLoading(false)
+                        updateAlert('User created')
+                        navigate('/signin')
 
-            //         }
-            //     } else {
-            //         setLoading(false)
-            //         updateAlert('Passwords did not match'); /**If passwords did not match this shows up */
-            //     }
-            // } 
-            // else {
-            //     setLoading(false)
-            //     updateAlert('Passwords did not match or one of the fields are empty'); /**If passwords did not match this shows up */
-            // }
+                    }
+                } else {
+                    setLoading(false)
+                    updateAlert('Passwords did not match'); /**If passwords did not match this shows up */
+                }
+            } 
+            else {
+                setLoading(false)
+                updateAlert('Passwords did not match or one of the fields are empty'); /**If passwords did not match this shows up */
+            }
         }
         createUser();
     }

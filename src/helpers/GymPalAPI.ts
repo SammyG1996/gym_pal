@@ -61,4 +61,11 @@ export class GymPalAPI {
     }
 
 
+    static async createUser(username:string, firstName:string, lastName:string, email:string, password:string){
+        const data = {username, firstName, lastName, email, password}    
+        const res:{name:string, status:number, response: {data:{error:{message:string | string[]}} }} | null = await this.post(`/auth/register`, data)
+        return res
+    }
+
+
 }

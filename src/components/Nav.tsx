@@ -28,8 +28,7 @@ const Nav = () => {
         updatedIsLoggedIn();
         updateToken('');
         updateAlert('You have been succefully logged out')
-        sessionStorage.removeItem('token')
-        sessionStorage.removeItem('username')
+        localStorage.removeItem('gym_pal')
         GymPalAPI.token = null;
         GymPalAPI.bearer_token_req = undefined;
         navigate('/')

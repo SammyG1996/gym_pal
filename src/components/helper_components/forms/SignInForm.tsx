@@ -9,6 +9,7 @@ import PrimaryButton from '../buttons/PrimaryButton';
 import { GymPalAPI } from '../../../helpers/GymPalAPI';
 import { ContextType } from '../../../config/ContextType';
 import Spinner from '../Alerts/Spinner';
+import { CredentialResponse } from '@react-oauth/google';
 
 /**This is a login form. It is used when a user is logging into the application. */
 const SignInForm = () => {
@@ -53,26 +54,30 @@ const SignInForm = () => {
      * If successful by the user will be redirected to the counter page 
      * if not the user will be redirected to the signup page to create an account
      */
-    // const handleOAuthSubmit = async (credentialResponse) => {
-    //     try {
-    //         setLoading(true);
-    //         const {token, username} = await NutritionApi.loginOAuth(credentialResponse);
-    //         if(token){
-    //             updateToken(token);
-    //             updatedIsLoggedIn();
-    //             updateUsername(username)
-    //             sessionStorage.setItem("token", `${token}`)
-    //             sessionStorage.setItem("username", `${username}`)
-    //             setLoading(false)
-    //             navigate('/counter')
-    //         }
-    //     } catch(err){
-    //         // If the user doesnt exist an alert happens and a user is redirected to the signup page
-    //         setLoading(false)
-    //         updateAlert('User does not exist, please sign up')
-    //         navigate('/signup')
-    //     }
-    // }
+    const handleOAuthSubmit = async (credentialResponse:CredentialResponse) => {
+        try {
+            setLoading(true);
+            const {token, user} = await GymPalAPI.loginOAuth(credentialResponse);
+            if(token){
+                console.log(token);
+                console.log(user);
+                updateToken(token);
+                updatedIsLoggedIn();
+                updateUsername(user.username)
+                updateUser(user);
+                sessionStorage.setItem("token", `${token}`)
+                sessionStorage.setItem("username", `${user.username}`)
+                sessionStorage.setItem("user", user)
+                setLoading(false)
+                // navigate('/counter')
+            }
+        } catch(err){
+            // If the user doesnt exist an alert happens and a user is redirected to the signup page
+            setLoading(false)
+            updateAlert('User does not exist, please sign up')
+            navigate('/signup')
+        }
+    }
 
     return (
         <div>
@@ -91,11 +96,10 @@ const SignInForm = () => {
                     <GoogleLogin
                             size='large'
                             width='250px'
-                            onSuccess={(credentialResponse)=> console.log(credentialResponse)}
-                            // onSuccess={ (credentialResponse) => handleOAuthSubmit(credentialResponse)}
-                            // onError={ () => {
-                            //     updateAlert('Login Failed')
-                            // }}
+                            onSuccess={ (credentialResponse) => handleOAuthSubmit(credentialResponse)}
+                            onError={ () => {
+                                updateAlert('Login Failed')
+                            }}
                         />
                     <div className='my-2'>
                         <PrimaryButton text='Submit'/>

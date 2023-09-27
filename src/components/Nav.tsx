@@ -8,15 +8,15 @@ import {CgProfile} from 'react-icons/cg'
 import {MdLogout, MdLogin} from 'react-icons/md'
 import { Link, useNavigate } from 'react-router-dom'
 import { IsLoggedInContext } from '../App'
-// import NutritionApi from './helpers/NutritionApi'
+import { ContextType } from '../config/ContextType'
+import { GymPalAPI } from '../helpers/GymPalAPI'
 
 
 
 const Nav = () => {
     const [menuClicked, setMenuClicked] = useState(false);
-    const contextValue = useContext(IsLoggedInContext) ?? { isLoggedIn: false, username: '' };
-    const { isLoggedIn, username } = contextValue;
-    
+    const {isLoggedIn, username, updatedIsLoggedIn, updateToken, updateAlert, updateUsername, updateUser} = useContext(IsLoggedInContext) as ContextType
+    const navigate = useNavigate();
 
     const handleHamburgerClick = () => {
         setMenuClicked( (bool) => {
@@ -24,15 +24,15 @@ const Nav = () => {
         })
     }
     const handleLogOut = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        // e.preventDefault();
-        // updatedIsLoggedIn(false);
-        // updateToken('');
-        // updateAlert('You have been succefully logged out')
-        // sessionStorage.removeItem('token')
-        // sessionStorage.removeItem('username')
-        // NutritionApi.token = null;
-        // NutritionApi.bearer_token_req = null;
-        // navigate('/')
+        e.preventDefault();
+        updatedIsLoggedIn();
+        updateToken('');
+        updateAlert('You have been succefully logged out')
+        sessionStorage.removeItem('token')
+        sessionStorage.removeItem('username')
+        GymPalAPI.token = null;
+        GymPalAPI.bearer_token_req = undefined;
+        navigate('/')
     }
 
     return (

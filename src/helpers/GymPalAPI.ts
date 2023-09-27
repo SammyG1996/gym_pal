@@ -3,9 +3,9 @@ import { apiUrl } from "../config/ApiUrl";
 import { CredentialResponse } from "@react-oauth/google";
 
 export class GymPalAPI {
-    static token:string;
-    static bearer_token_req:AxiosRequestConfig;
-    static user: object
+    static token:string | null;
+    static bearer_token_req:AxiosRequestConfig | undefined;
+    static user: object | null
 
     static async post<T>(urlPath:string, data = {}, validationNeeded = false): Promise<T | null> {
         try {

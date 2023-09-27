@@ -40,7 +40,7 @@ const SignInForm = () => {
                 sessionStorage.setItem("username", `${inputData.username}`)
                 sessionStorage.setItem("user", user)
                 setLoading(false)
-                // navigate('/counter')
+                navigate('/')
             }
         } catch(err){
             setLoading(false)
@@ -69,7 +69,7 @@ const SignInForm = () => {
                 sessionStorage.setItem("username", `${user.username}`)
                 sessionStorage.setItem("user", user)
                 setLoading(false)
-                // navigate('/counter')
+                navigate('/')
             }
         } catch(err){
             // If the user doesnt exist an alert happens and a user is redirected to the signup page

@@ -34,6 +34,7 @@ function App() {
       updateToken(token);
       updatedIsLoggedIn();
       updateUsername(username);
+      updateUser(user)
       GymPalAPI.token = token;
       GymPalAPI.bearer_token_req = {
         headers: { 

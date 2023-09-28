@@ -8,6 +8,7 @@ export type ContextType = {
     alert: string | null;
     updateAlert : (val:string | null) => void;
     formattedDate: string;
-    user: object | null;
+    user: Record<string, any> | null;
     updateUser : (val:object | null) => void;
   };
+

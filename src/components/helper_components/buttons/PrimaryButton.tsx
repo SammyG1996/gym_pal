@@ -11,12 +11,12 @@ const PrimaryButton = ({icon=null, link, text}:ButtonProps) => {
   return (
     <>
         {link && <button className='flex items-center rounded-lg px-3 py-2 m-1 text-white bg-[#98C1D9] hover:bg-[#E0FBFC] hover:text-[#98C1D9] shadow-lg'  >
-            <div className='flex items-center justify-between'>
+            <div className='flex items-center justify-between mx-auto'>
                 {icon}<span className={`whitespace-nowrap ${icon !== null && 'pl-2'}`}><Link to={link}>{text}</Link></span>
             </div>
         </button>}
         {!link && <button className='flex items-center rounded-lg px-3 py-2 m-1 text-white bg-[#98C1D9] hover:bg-[#E0FBFC] hover:text-[#98C1D9] shadow-lg'  >
-            <div className='flex items-center justify-between'>
+            <div className='flex items-center justify-between mx-auto'>
                 {icon}<span className={`whitespace-nowrap ${icon !== null && 'pl-2'}`}>{text}</span>
             </div>
         </button>}

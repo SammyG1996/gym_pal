@@ -10,7 +10,7 @@ const LoggedInHome = () => {
     const workouts:Record<string, any> = user ? user.workouts : null;
 
     return (
-        <div className='animate-fade-up animate-once animate-duration-[1000ms] animate-ease-out animate-normal animate-fill-forwards max-w-[1000px] w-[92vw] md:w-[50vw]'>
+        <div className='animate-fade-up animate-once animate-duration-[1000ms] animate-ease-out animate-normal animate-fill-forwards max-w-[1000px] w-[92vw] md:w-[50vw] lg:w-[35vw]'>
                 <div className={`grid grid-cols-1 bg-[${Colors.dark}] mt-5 bg-opacity-50 backdrop-blur-xl backdrop-filter backdrop-saturate-200 p-5 shadow-xl rounded-lg`}>
                     <h1 className='text-white text-lg'>Welcome Back: {username}</h1>
                     <p className='text-white text-md'>Today's Date: {formattedDate}</p>

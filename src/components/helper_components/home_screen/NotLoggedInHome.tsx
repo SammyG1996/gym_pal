@@ -15,7 +15,7 @@ const NotLoggedInHome = () => {
                 <img className='w-[100vw] mx-auto md:w-[35vw]' src={Logo} alt="logo img" />
                 <h1 className='text-white font-sans text-xl my-2'>Your ultimate gym companion</h1>
             </div>
-            <div className='grid grid-cols-3 mt-5'>
+            <div className='flex flex-row justify-between mt-5'>
                 <PrimaryButton icon={<BsFillPersonPlusFill />} link={'/signup'} text={'Sign Up'}/>
                 <PrimaryButton icon={<MdLogin />} link={'/signin'} text={'Sign In'}/>
                 <SecondaryButton icon={<BsFillMouseFill />} link={'/demo'} text={'Demo'}/>

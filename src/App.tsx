@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 import './App.css';
 import Nav from './components/Nav';
+import BottomNav from './components/BottomNav';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
 import Form from './components/Form';
@@ -8,6 +9,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { ContextType } from './config/ContextType';
 import Alert from './components/helper_components/Alerts/Alert';
 import { GymPalAPI } from './helpers/GymPalAPI';
+import WorkoutEditScreen from './components/helper_components/workout_edit_screen/WorkoutEditScreen';
 
 
 
@@ -73,8 +75,10 @@ function App() {
             <Route path={'/'} element={<Home />} />
             <Route path={'/signin'} element={<Form />} />
             <Route path={'/signup'} element={<Form />} />
+            <Route path={'/editworkout/:workoutName'} element={<WorkoutEditScreen />} />
             <Route path='*' element={<Navigate replace to='/' />} />
           </Routes>
+          <BottomNav />
 
         </IsLoggedInContext.Provider>
         </GoogleOAuthProvider>

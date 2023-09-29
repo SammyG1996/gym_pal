@@ -13,7 +13,7 @@ const Form = () => {
     console.log(location.pathname)
   return (
     <div className='flex justify-center w-full h-screen animate-fade-up animate-once animate-duration-1000 animate-ease-out animate-normal animate-fill-forwards'>
-      <div className='max-w-[1000px] pt-10'>
+      <div className='max-w-[1000px]'>
 
         {location.pathname === "/signin" && <SignInForm />}
         {location.pathname === "/signup" && <SignUpForm />}

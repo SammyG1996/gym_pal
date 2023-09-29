@@ -14,6 +14,7 @@ import { GiWeightLiftingUp } from "react-icons/gi";
 import { CgGym } from "react-icons/cg";
 import { FaHistory } from 'react-icons/fa'
 import { BiDumbbell } from 'react-icons/bi'
+import {BsFillMouseFill} from 'react-icons/bs';
 
 
 
@@ -86,6 +87,14 @@ const BottomNav = () => {
                     <div className='flex flex-col items-center justify-center h-[100%] w-[70px]'>
                         <MdLogin className='text-xl'/>
                         <span className='text-sm'>Sign In</span>
+                    </div>
+                </Link>}
+
+                {!isLoggedIn && 
+                <Link to={'/signin'}>
+                    <div className='flex flex-col items-center justify-center h-[100%] w-[70px]'>
+                        <BsFillMouseFill className='text-xl'/>
+                        <span className='text-sm'>Demo</span>
                     </div>
                 </Link>}
             

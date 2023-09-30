@@ -91,7 +91,7 @@ const SignUpForm = () => {
             {loading && <Spinner />}
 
             {!loading && <form  onSubmit={handleSubmit}>
-                <div className={`bg-[${Colors.dark}] bg-opacity-50 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-10 mt-10 w-[80vw] md:w-[60vw] lg:w-[30vw] shadow-md flex flex-col items-center`}>
+                <div className={`bg-[${Colors.dark}] bg-opacity-50 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-5 mt-10 w-[80vw] md:w-[60vw] lg:w-[30vw] shadow-md flex flex-col items-center`}>
                     <h1 className='text-2xl text-center my-5 text-white font-black'>Sign Up</h1>
                     {outhAlert && <p className='text-sm text-center text-white font-black'>You information has been auto filled.</p> }
                     {outhAlert && <p className='text-sm text-center text-white font-black'>Please enter a password and submit.</p> }

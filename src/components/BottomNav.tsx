@@ -41,7 +41,7 @@ const BottomNav = () => {
 
     return (
         // Icon light color hex 31C48D
-        <div className='md:hidden sticky bottom-0 w-full h-[70px] flex justify-between px-4 items-center bg-[#293241] text-white shadow-lg z-50'>
+        <div className='md:hidden sticky bottom-0 w-full h-[90px] flex justify-between px-4 items-center bg-[#293241] text-white shadow-lg z-50'>
             
 
             <Link to={'/'}>
